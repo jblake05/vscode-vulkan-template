@@ -8,4 +8,4 @@ SET defines=/D DEBUG
 
 echo "Building main..."
 
-cl /EHsc %includes% %defines% src/main.cpp %links%
+cl /EHsc %includes% %defines% src/main.cpp /std:c++20 %links%
