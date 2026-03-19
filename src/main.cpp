@@ -10,15 +10,34 @@ import vulkan_hpp;
 #include <stdexcept>
 #include <cstdlib>
 
+constexpr uint32_t WIDTH = 800;
+constexpr uint32_t HEIGHT = 600;
+
 class HelloTriangleApplication {
 public:
     void run() {
+        initWindow();
+        std::cout << "Initialized window, initializing Vulkan..." << std::endl;
+
         initVulkan();
+        std::cout << "Initialized Vulkan, starting main loop..." << std::endl;
+
         mainLoop();
+        std::cout << "Finished main loop, starting cleanup..." << std::endl;
+
         cleanup();
     }
 
 private:
+    void initWindow() {
+        glfwInit();
+
+        glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+
+        window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
+
+    }
     void createInstance() {
         vk::ApplicationInfo appInfo = {}; 
         appInfo.pApplicationName    = "Hello Triangle",
@@ -38,15 +57,20 @@ private:
     }
 
     void mainLoop() {
-
+        while (!glfwWindowShouldClose(window)) {
+            glfwPollEvents();
+        }
     }
 
     void cleanup() {
+        glfwDestroyWindow(window);
 
+        glfwTerminate();
     }
 
     vk::raii::Context context;
     vk::raii::Instance instance = nullptr;
+    GLFWwindow* window;
 };
 
 int main()
