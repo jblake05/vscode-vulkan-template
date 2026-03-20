@@ -1,0 +1,20 @@
+{
+  "configurations": [
+    {
+      "name": "windows-gcc-x64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "C:/vcpkg/installed/x64-windows/include/**",
+        "C:/VulkanSDK/1.4.341.1/Include/**"
+      ],
+      "compilerPath": "C:/Program Files/Haskell Platform/8.4.3/mingw/bin/gcc.exe",
+      "cStandard": "${default}",
+      "cppStandard": "${default}",
+      "intelliSenseMode": "windows-gcc-x64",
+      "compilerArgs": [
+        ""
+      ]
+    }
+  ],
+  "version": 4
+}
